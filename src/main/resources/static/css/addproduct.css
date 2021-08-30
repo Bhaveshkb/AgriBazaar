@@ -1,0 +1,31 @@
+@charset "ISO-8859-1";
+
+html {
+	background: url('agril.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.form {
+	position: absolute;
+	top: 50%;
+	left: 47%;
+	width: 35em;
+	height: 24em;
+	margin-top: -9em;
+	margin-left: -15em;
+	border: 3px solid rgb(135, 194, 138);
+	background-color: white;
+	border-radius: 20px;
+}
+
+#in {
+	margin-left: 45px;
+	border-color: rgb(0, 255, 98);
+	border-radius: 10px;
+	width: 250px;
+	height: 35px;
+	margin-top: 5px;
+}
