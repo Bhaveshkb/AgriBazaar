@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.example.entiry.Register;
+import com.example.entity.Register;
 import com.example.repository.RegisterRepository;
 
 public class UserDetailServiceImp implements UserDetailsService {
@@ -22,25 +22,8 @@ public class UserDetailServiceImp implements UserDetailsService {
 		if (register == null) {
 			throw new UsernameNotFoundException("Could not found user");
 		}
-
 		CustomRegisterDetails customRegisterDetails = new CustomRegisterDetails(register);
 
 		return customRegisterDetails;
-		
-		
-
-//		Register register = userRepo.getRegisterByRegisterName(username);
-//		CustomRegisterDetails userDetails = null ;
-//		
-//		if (register != null)
-//		{
-//			userDetails = new CustomRegisterDetails();
-//			userDetails.setRegister(register);
-//		}
-//		
-		
-		
-		
 	}
-
 }

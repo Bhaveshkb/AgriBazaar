@@ -1,5 +1,6 @@
 package com.example.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 @EnableWebSecurity
@@ -36,28 +38,37 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
 		return daoAuthenticationProvider ;
 	}
 
-	
 	//configure method ..
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
 	}
+	
+	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+	        registry.addResourceHandler("/resources/**")
+	                .addResourceLocations("/resources/")
+	                .setCachePeriod(31556926);
+
+	    }
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("/buyer/**").hasRole("buyer")
 		.antMatchers("/**").permitAll().and().formLogin()
 		.loginPage("/signin");
-		
-		
+
 		/*
 		 * .loginProcessingUrl("/dologin") .defaultSuccessUrl("/farmer/")
 		 * .failureForwardUrl("/")
 		 * .loginPage("/signin")
 		 * .authenticated().anyRequest()
 		 * .antMatchers("/farmer/**").hasRole("farmer")
+		 * .defaultSuccessUrl("/farmer/test")
+		 * .antMatchers("/farmer/**").hasRole("farmer")
+			.antMatchers("/buyer/**").hasRole("buyer")
+		 * 
 		 */
 	}
 	

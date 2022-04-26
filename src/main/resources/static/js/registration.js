@@ -1,20 +1,28 @@
 /**
  * 
  */
- 
- function validation() {
-							var First = document.getElementById('First').value;
-							var Last = document.getElementById('Last').value;
-							var Mobile = document.getElementById('Mobile').value;
-							var email = document.getElementById('email').value;
-							var pass = document.getElementById('pass').value;
 
+ function validation() {
+							var First = document.getElementById('firstName').value;
+							var Last = document.getElementById('lastname').value;
+							var Mobile = document.getElementById('mobileno').value;
+							var email = document.getElementById('username').value;
+							var pass = document.getElementById('password').value;
+	
+							if(document.getElementById('farm').checked){
+								
+							}else if(document.getElementById('buy').checked){
+								
+							}else{
+								document.getElementById("disp").innerHTML
+                   				 = "Check any one CheckBox";
+							}
 							if (First == "") {
 								document.getElementById('firstt').innerHTML = "Enter First Name";
 								return false;
 							}
-							if (First.length < 4) {
-								document.getElementById('firstt').innerHTML = "First Name Should contain atleast 3 Characters";
+							if (First.length < 2) {
+								document.getElementById('firstt').innerHTML = "First Name Should contain atleast 2 Characters";
 								return false;
 							}
 							if (!isNaN(First)) {

@@ -1,6 +1,7 @@
-package com.example.entiry;
+package com.example.entity;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,27 +13,60 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="register")
 public class Register {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id ;
+
+	@NotBlank(message="First Name is required")
+	@Length(min=3,max=15,message="Invalid Name Length")
+	@Column(name="firstName")
 	private String firstName ;
+	
+	@NotBlank(message="Last Name is required")
+	@Length(min=3,max=15,message="Invalid Name Length")
+	@Column(name="lastname")
 	private String lastname ;
+	
+	@NotBlank(message="Mobile No is required")
+	@Length(min=10,max=10,message="Invalid Mobile Number")
+	@Column(name="mobileno",unique=true)
 	private String mobileno ;
-	@Column(unique = true)
+	
+	@Email
+	@NotBlank(message="UserName is required")
+	@Column(name="username",unique = true)
 	private String username ;
+	
+	@NotBlank(message="Password is required")
+	@Length(min=8,message="Invalid Password Length")
+	@Column(name="password")
 	private String password ;
+	
+	@NotNull
+	@Column(name="type")
 	private String type ;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch =FetchType.LAZY,mappedBy = "register")
-	private List<Farmer> addProduct = new ArrayList<>();
-
 	public Register() {
 		super();
-		// TODO Auto-generated constructor stub
+		
+	}
+
+	public Register(int id) {
+		super();
+		this.id = id;
 	}
 
 	public Register(int id, String firstName, String lastname, String mobileno, String username, String password,
@@ -45,6 +79,7 @@ public class Register {
 		this.username = username;
 		this.password = password;
 		this.type = type;
+
 	}
 
 	public int getId() {
@@ -103,21 +138,10 @@ public class Register {
 		this.type = type;
 	}
 
-	public List<Farmer> getAddProduct() {
-		return addProduct;
-	}
-
-	public void setAddProduct(List<Farmer> addProduct) {
-		this.addProduct = addProduct;
-	}
-
 	@Override
 	public String toString() {
 		return "Register [id=" + id + ", firstName=" + firstName + ", lastname=" + lastname + ", mobileno=" + mobileno
-				+ ", username=" + username + ", password=" + password + ", type=" + type + ", addProduct=" + addProduct
-				+ "]";
+				+ ", username=" + username + ", password=" + password + ", type=" + type + "]";
 	}
-	
-	
-	
+		
 }

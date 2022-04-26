@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})" > -->
+
+<head>
+<meta charset="ISO-8859-1">
+<title th:text=${title}>Farmer Home</title>
+<!-- Bootstrap CSS -->
+
+	<script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"
+    ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+
+<link rel="stylesheet" th:href="@{/css/index.css}">
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+<style>
+.form {
+	position: absolute;
+	top: 48%;
+	left: 47%;
+	width: 33em;
+	height: 28em;
+	margin-top: -9em;
+	margin-left: -15em;
+	border: 3px solid rgb(135, 194, 138);
+	background-color: white;
+	border-radius: 20px;
+}
+body{
+    background-image:url('https://th.bing.com/th/id/R.522e49804496b0c1c1f93997e6391a2b?rik=ZCAeaupzk4%2fFjw&riu=http%3a%2f%2fwww.wallpaperbetter.com%2fwallpaper%2f329%2f294%2f513%2fsunset-grass-field-1080P-wallpaper.jpg&ehk=4%2bKxeZyd7VXhjlQReETzAgZeh6yUfXy7X4yUu14BWu0%3d&risl=&pid=ImgRaw&r=0');
+    	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	background-attachment:fixed;
+    }
+</style>
+</head>
+<body>
+	<nav
+		class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top navbar-expand-xl">
+
+		<a class="navbar-brand" href="#">Agri Bazaar</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<ul class="navbar-nav ml-auto text-uppercase">
+
+				<li class="nav-item active"><a class="nav-link"
+					th:href="@{/bidding/bhome}">Home </a></li>
+
+				
+
+				<li class="nav-item"><a class="nav-link "
+					th:href="@{/bidding/Showproducts}" tabindex="-1"
+					arial-disabled="true">Show Products</a></li>
+
+				<li class="nav-item"><a class="nav-link " th:href="@{/logout}"
+					tabindex="-1" arial-disabled="true">logout</a></li>
+			</ul>
+
+		</div>
+	</nav>
+	<div class="container">
+		<h1 align=center>Bid Here</h1>
+		<div class="align-items-center mt-5"
+			style="margin-left: 180px; margin-top: 30px;">
+			<form th:action="@{/bidding/updatebid}" method="post" class="form"
+				align=center th:object="${farmer}">
+				
+				<div class=" container col-8 d-flex align-items-center border-dark">
+
+					<input type="hidden" th:field="*{productId}">
+					<div>
+
+						<input type="hidden" class="form-control" name="bid" th:field="${farmer.productId}">
+						</td> </input> <input type="hidden" class="form-control" name="bid" th:field="${farmer.productname}">
+						</td> </input> <input type="hidden" class="form-control" name="bid" th:field="${farmer.quantity}"> </label> 
+						<input type="hidden" class="form-control" name="bid" th:field="${farmer.minPrice}">
+						</td>
+				
+						<hr>
+						</td> <label><b> Product Name :</b></label>
+						<td th:text="${farmer.productname}"></td>
+						<br> <label><b> Quantity :</b></label>
+						<td th:text="${farmer.quantity}"></td>
+						<label>KG</label><br> 
+						<label><b style="color: red;"> Min Price :</b></label>
+						<td th:text="${farmer.minPrice}"></td>
+						<br> 
+						<label><b style="color: red;"> Highest Bid :</b></label>
+						<td  th:text="${farmer.highestBid}"></td>
+						<label style="color: red;">*</label>
+						<hr>
+						
+						 <label style="color: red;"><b>Please Bid More than Min Price and  Highest Bid</b></label>
+						</td> </input> <br> <label><b> Bid Here</b></label> 
+						<input type="text" class="form-control" style="text-align:center;" name="bid" th:field ="${farmer.highestBid}" >
+								
+
+						</td> </input> <input type="hidden" class="form-control" name="bid"
+							th:field="${farmer.status}">
+						</td> </input> <input type="hidden" class="form-control" name="bid"
+							th:field="${farmer.reg_id}">
+						</td> </input>
+					</div>
+
+					<hr>
+
+				</div>
+				<div class="col-3 d-flex justify-content-end align-items-center"
+					style="margin-left: 190px; margin-top: 30px;">
+					<button type="submit" class="btn btn-dark btn-block">Place
+						Bid</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</body>
+</html>

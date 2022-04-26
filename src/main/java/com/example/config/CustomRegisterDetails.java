@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.example.entiry.Register;
+import com.example.entity.Register;
 
 public class CustomRegisterDetails implements UserDetails {
 
